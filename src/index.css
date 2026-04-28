@@ -1,0 +1,24 @@
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+body{
+  font-family: 'HelveticaNowTextMedium', 'HelveticaNowText', sans-serif;
+}
+/* add font HelveticaNowTextMedium.woff2 */
+@font-face {
+  font-family: 'HelveticaNowTextMedium';
+  src: url('./assets/HelveticaNowTextMedium.woff2') format('woff2');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+/* add font HelveticaNowText.woff2 */
+@font-face {
+  font-family: 'HelveticaNowText';
+  src: url('./assets/HelveticaNowText.woff2') format('woff2');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
