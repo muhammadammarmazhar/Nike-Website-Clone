@@ -15,7 +15,7 @@ const Home = () => {
             <section className="sec-1">
                 <div className="main">
                     <div className="header">
-                        <div><a href="/find-a-store" className='header-link'>Find a Store</a></div>
+                        <div><a href="/find-a-store" className='header-link'>Find aa Store</a></div>
                         <div>|</div>
                         <div className='help-container'>
                             <a href="/" className='header-link'>Help</a>
