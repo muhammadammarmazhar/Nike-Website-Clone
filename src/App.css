@@ -153,7 +153,7 @@
 }
 .btn-td {
   text-decoration: none;
-  color: black;
+  color: inherit;
 }
 .c{
   color: white;
@@ -317,7 +317,67 @@
 .footer-hr {
   display: none;
 }
+.righttoleft{
+  width: 300px;
+  height: 100vh;
+  position: fixed;
+  right: 0;
+  top: 0;
+  background-color: white;
+  z-index: 100;
+  overflow: auto;
+  display: none;
+}
+.cross{
+ display: flex;
+ align-items: center;
+ justify-content: end;
+  cursor: pointer;
+  padding: 20px 0px;
+}
+.cross-sign{
+  width: 30px;
+  height: 30px;
+}
+.rl-headings{
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  padding: 20px 0px;
+  font-size: 22px;
+}
+.rl-p{
+  font-size: 20px;
+  color: rgba(0, 0, 0, 0.5);
+}
+.rl-content{
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  padding: 40px 0px;
+  
+}
+.rl-buttons{
+  display: flex;
+  gap: 10px;
+}
+.rl-icons{
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 30px 0px;
+}
+.rl-name{
+  display: flex;
+  gap: 10px;
+}
+.rl-popup{
+  padding: 0px 30px;
+}
 
+.open{
+  display: block;
+}
 /* media querty for mobile with max width 1024px */
 @media (max-width: 1024px) {
   .header {
@@ -400,7 +460,7 @@
   }
 
   .discover-btn {
-    background-color: #000;
+    background-color: black;
     color: #fff;
   }
 
