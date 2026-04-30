@@ -1,33 +1,39 @@
 import './App.css'
-import { BrowserRouter, Routes, Route } from 'react-router-dom'
+import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom'
 import Home from './pages/eg/home'
-import Findastore from './pages/findastore'
-import Help from './pages/help'
-import Joinus from './pages/joinus'
-import Signin from './pages/signin'
-import Terms from './pages/terms'
-import Contactus from './pages/contactus'
-import Careers from './pages/careers'
-import Investors from './pages/investors'
-import Privacy from './pages/privacy'
-import World from './pages/world'
+import Findastore from './pages/eg/findastore'
+import Help from './pages/eg/help'
+import Joinus from './pages/eg/joinus'
+import Signin from './pages/eg/signin'
+import Terms from './pages/eg/terms'
+import Contactus from './pages/eg/contactus'
+import Careers from './pages/eg/careers'
+import Investors from './pages/eg/investors'
+import Privacy from './pages/eg/privacy'
+import World from './pages/eg/world'
+import UsaHome from './pages/usa/home'
 
 function App() {
   return (
     <>
       <BrowserRouter>
         <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/find-a-store" element={<Findastore />} />
-          <Route path="/help" element={<Help />} />
-          <Route path="/join-us" element={<Joinus />} />
-          <Route path="/sign-in" element={<Signin />} />
-          <Route path="/terms" element={<Terms />} />
-          <Route path="/contact-us" element={<Contactus />} />
-          <Route path="/careers" element={<Careers />} />
-          <Route path="/investors" element={<Investors />} />
-          <Route path="/privacy" element={<Privacy />} />
-          <Route path="/world" element={<World />} />
+          <Route path="/eg" element={<Home />} />
+          <Route path="/eg/find-a-store" element={<Findastore />} />
+          <Route path="/eg/help" element={<Help />} />
+          <Route path="/eg/join-us" element={<Joinus />} />
+          <Route path="/eg/sign-in" element={<Signin />} />
+          <Route path="/eg/terms" element={<Terms />} />
+          <Route path="/eg/contact-us" element={<Contactus />} />
+          <Route path="/eg/careers" element={<Careers />} />
+          <Route path="/eg/investors" element={<Investors />} />
+          <Route path="/eg/privacy" element={<Privacy />} />
+          <Route path="/eg/world" element={<World />} />
+          <Route path="/" element={<UsaHome />} />
+
+          {/* add redirection to /eg for / route */}
+          {/* <Route path="/" element={<Navigate to="/eg" replace />} /> */}
+
         </Routes>
       </BrowserRouter>
     </>

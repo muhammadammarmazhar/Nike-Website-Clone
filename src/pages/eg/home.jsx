@@ -1,76 +1,70 @@
-import { RxHamburgerMenu } from 'react-icons/rx'
-import nike from '../assets/nike.png'
-import { FiUser } from 'react-icons/fi'
-import shoe from '../assets/shoe.avif'
-import discover from '../assets/discover.avif'
-import p1 from '../assets/p1.avif'
-import p2 from '../assets/p2.avif'
+import shoe from '@/assets/shoe.avif'
+import discover from '@/assets/discover.avif'
+import p1 from '@/assets/p1.avif'
+import p2 from '@/assets/p2.avif'
 import { RiGlobalLine } from 'react-icons/ri'
 import { FaAngleDown, FaAngleUp } from 'react-icons/fa'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { IoIosHelpCircleOutline, IoMdClose } from 'react-icons/io'
 import { MdOutlineStore } from 'react-icons/md'
+import EgHeader from '@/components/egHeader'
+import Egfooter from '@/components/egfooter'
 
 
 const Home = () => {
     const [isMenuOpen, setIsMenuOpen] = useState(false)
+    const Egfooter = () => {
     const [arrowChange, setArrowChange] = useState({
-        arrowChange1: false,
-        arrowChange2: false,
-        arrowChange3: false
-    })
-    const toggleArrowChange = (key) => {
-        setArrowChange({
-            ...arrowChange,
-            [key]: !arrowChange[key]
+            arrowChange1: false,
+            arrowChange2: false,
+            arrowChange3: false
         })
-    }
-
+        const [screenWidth, setScreenWidth] = useState(window.innerWidth)
+        
+            // i want to get screen width on resize 
+            useEffect(() => {
+                const handleResize = () => {
+                    setScreenWidth(window.innerWidth)
+        
+                    if (window.innerWidth > 1024) {
+                        setArrowChange({
+                            arrowChange1: true,
+                            arrowChange2: true,
+                            arrowChange3: true
+                        })
+                    }
+                };
+                // Run once on mount (optional but useful)
+                handleResize();
+        
+                window.addEventListener("resize", handleResize);
+                
+                
+                //Cleanup (VERY IMPORTANT)
+                return () => {
+                    window.removeEventListener("resize", handleResize);
+                };
+            }, []);
+        
+            const toggleArrowChange = (key) => {
+        
+                //if screen width is less than 1024px, don't toggle
+                if (screenWidth > 1024) {
+        
+                    return;
+                }
+        
+                setArrowChange({
+                    ...arrowChange,
+                    [key]: !arrowChange[key]
+                })
+            }
+        }
     // console.log({ ...toggleAccordion, [accordion]: !toggleAccordion[accordion] })
 
     return (
         <div>
-            <section className="sec-1">
-                <div className="main">
-                    <div className="header">
-                        <div><a href="/find-a-store" className='header-link'>Find a Store</a></div>
-                        <div>|</div>
-                        <div className='help-container'>
-                            <a href="/" className='header-link'>Help</a>
-                            {/* pop up for help */}
-                            <div className='help-popup'>
-                                <div><a href="/" className='help-link'>Help</a></div>
-                                <div className='help-options'>
-                                    <div><a href="/" className='help-links'>Return</a></div>
-                                    <div><a href="/terms" className='help-links'>Term of Use</a></div>
-                                    <div><a href="/contact-us" className='help-links'>Contact Us</a></div>
-                                </div>
-                            </div>
-                        </div>
-                        <div>|</div>
-                        <div><a href="/join-us" className='header-link'>Join Us</a></div>
-                        <div>|</div>
-                        <div><a href="/sign-in" className='header-link'>Sign In</a></div>
-                    </div>
-                </div>
-            </section>
-            <section className="sec-2">
-                <div className="main">
-                    <div className='logo-section'>
-                        <div>
-                            <a href="/"><img src={nike} alt="Nike Logo" className='nike-logo' /></a>
-                        </div>
-                        <div className='logo-content'>
-                            <div><a href="/find-a-store" className='logo-link'>Find a Store</a></div>
-                            <div><a href="/about-us" className='logo-link'>About Us</a></div>
-                        </div>
-                        <div className='logo-icons'>
-                            <div><a href="/sign-in" className='btn-td'><FiUser /></a></div>
-                            <div><button className='btn-td'><RxHamburgerMenu onClick={() => setIsMenuOpen(true)} /></button></div>
-                        </div>
-                    </div>
-                </div>
-            </section>
+            <EgHeader />
             <section className="sec-3">
                 <div className="main">
                     <div className="blank"></div>
@@ -87,7 +81,7 @@ const Home = () => {
                 <div className="main">
                     <div className='sec-5-content'>
                         <div className='sec-5-title'>Find your perfect running shoe</div>
-                        <button type='button' className='btn sec-5-btn'><a href='/find-a-store' className='btn-td c' >Find a Store</a></button>
+                        <button type='button' className='btn sec-5-btn'><a href='/eg/find-a-store' className='btn-td c' >Find a Store</a></button>
                     </div>
                 </div>
             </section>
@@ -98,7 +92,7 @@ const Home = () => {
                         <div className='sec-6-text'>
                             <div className='sec-6-title'>Discover the evolution of air </div>
                             <button className='btn sec-6-btn discover-btn'>
-                                <a href='/find-a-store' className='btn-td '>Find a Store</a></button>
+                                <a href='/eg/find-a-store' className='btn-td '>Find a Store</a></button>
                         </div>
                     </div>
                 </div>
@@ -139,85 +133,7 @@ const Home = () => {
                     </div>
                 </div>
             </section>
-            <section className='sec-8'>
-                <div className='main'>
-                    <div className='footer'>
-                        <div><hr /></div>
-                        <div className='footer-grid'>
-                            <div className='footer-grid-item'>
-                                <div className='item-list a'>
-                                    <div className='accordion-header' onClick={() => toggleArrowChange('arrowChange1')}>
-                                        <div>Resources</div>
-                                        <div>
-                                            {arrowChange.arrowChange1 ? (
-                                                <FaAngleUp className='down-arrow' />
-                                            ) : (
-                                                <FaAngleDown className='down-arrow' />
-                                            )}
-                                        </div>
-                                    </div>
-                                    {arrowChange.arrowChange1 && (
-                                        <div className='accordion-content'>
-                                            <div className='list'><a href='/find-a-store' className='btn-td light-grey'>Find a Store</a></div>
-                                        </div>
-                                    )}
-                                </div>
-                                <div className="item-list a">
-                                    <div className='accordion-header' onClick={() => toggleArrowChange('arrowChange2')}>
-                                        <div>Help</div>
-                                        <div>
-                                            {arrowChange.arrowChange2 ? (
-                                                <FaAngleUp className='down-arrow' />
-                                            ) : (
-                                                <FaAngleDown className='down-arrow' />
-                                            )}
-                                        </div>
-                                    </div>
-                                    {arrowChange.arrowChange2 && (
-                                        <div className='accordion-content'>
-                                            <div className='list'>
-                                                <div><a href='/get-help' className='btn-td light-grey'>Get Help</a></div>
-                                                <div><a href='/returns' className='btn-td light-grey'>Returns</a></div>
-                                                <div><a href='/contact-us' className='btn-td light-grey'>Contact Us</a></div>
-                                            </div>
-                                        </div>
-                                    )}
-                                </div>
-                                <div className="item-list a">
-                                    <div className='accordion-header' onClick={() => toggleArrowChange('arrowChange3')}>
-                                        <div>Company</div>
-                                        {arrowChange.arrowChange3 ? (
-                                            <FaAngleUp className='down-arrow' />
-                                        ) : (
-                                            <FaAngleDown className='down-arrow' />
-                                        )}
-                                    </div>
-                                    {arrowChange.arrowChange3 && (
-                                        <div className='accordion-content'>
-                                            <div className="list">
-                                                <div><a href='/about-nike' className='btn-td light-grey'>About Nike</a></div>
-                                                <div><a href='/news' className='btn-td light-grey'>News</a></div>
-                                                <div><a href='/careers' className='btn-td light-grey'>Careers</a></div>
-                                                <div><a href='/investors' className='btn-td light-grey'>Investors</a></div>
-                                                <div><a href='/' className='btn-td light-grey'>Sustainability</a></div>
-                                            </div>
-                                        </div>
-                                    )}
-                                </div>
-                                <div className='footer-grid-r a'><a href='/world' className='btn-td light-grey'>
-                                    <div><RiGlobalLine /></div>
-                                    <div>Egypt</div>
-                                </a></div>
-                            </div>
-                        </div>
-                        <div className='footer-bottom'>
-                            <div>© 2026 Nike, Inc. All rights reserved</div>
-                            <div><a href='/terms-of-use' className='btn-td light-grey'>Terms of Use</a></div>
-                            <div><a href='/privacy' className='btn-td light-grey'>Privacy & Cookie Policy</a></div>
-                        </div>
-                    </div>
-                </div>
-            </section>
+            <Egfooter />
             <section className={`righttoleft ${isMenuOpen ? 'open' : ''}`}>
                 <div className="rl-popup">
                     <div className="cross">
